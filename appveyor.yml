@@ -1,40 +1,40 @@
 build: false
 
 environment:
-    PYTHON: "C:\\Python37"
+  PYTHON: "C:\\Python37"
 
-    matrix:
-        # Conan 1.12.x
-        - PYVER: py27
-          TOXENV: py27-conan112
-        - PYVER: py36
-          TOXENV: py36-conan112
-        - PYVER: py37
-          TOXENV: py37-conan112
+  matrix:
+    # Conan 1.12.x
+    - PYVER: py27
+      TOXENV: py27-conan112
+    - PYVER: py36
+      TOXENV: py36-conan112
+    - PYVER: py37
+      TOXENV: py37-conan112
 
-        # Conan 1.11.x
-        - PYVER: py27
-          TOXENV: py27-conan111
-        - PYVER: py36
-          TOXENV: py36-conan111
-        - PYVER: py37
-          TOXENV: py37-conan111
+    # Conan 1.11.x
+    - PYVER: py27
+      TOXENV: py27-conan111
+    - PYVER: py36
+      TOXENV: py36-conan111
+    - PYVER: py37
+      TOXENV: py37-conan111
 
-        # Conan 1.10.x
-        - PYVER: py27
-          TOXENV: py27-conan110
-        - PYVER: py36
-          TOXENV: py36-conan110
-        - PYVER: py37
-          TOXENV: py37-conan110
+    # Conan 1.10.x
+    - PYVER: py27
+      TOXENV: py27-conan110
+    - PYVER: py36
+      TOXENV: py36-conan110
+    - PYVER: py37
+      TOXENV: py37-conan110
 
-        # Conan 1.09.x
-        - PYVER: py27
-          TOXENV: py27-conan109
-        - PYVER: py36
-          TOXENV: py36-conan109
-        - PYVER: py37
-          TOXENV: py37-conan109
+    # Conan 1.09.x
+    - PYVER: py27
+      TOXENV: py27-conan109
+    - PYVER: py36
+      TOXENV: py36-conan109
+    - PYVER: py37
+      TOXENV: py37-conan109
 
 install:
   - .ci/appveyor/install.bat
