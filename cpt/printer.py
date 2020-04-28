@@ -10,7 +10,7 @@ class Printer(object):
         self.printer = printer or sys.stdout.write
 
     def print_in_docker(self, container=None):
-        text = """
+        text = r"""
                     ##        .
               ## ## ##       ==
            ## ## ## ##      ===
@@ -26,7 +26,7 @@ class Printer(object):
 
     def print_ascci_art(self):
 
-        text = """
+        text = r"""
    ____ ____ _____    __   ____                          ____            _                      _____           _      __  
   / ___|  _ \_   _|  / /  / ___|___  _ __   __ _ _ __   |  _ \ __ _  ___| | ____ _  __ _  ___  |_   _|__   ___ | |___  \ \ 
  | |   | |_) || |   | |  | |   / _ \| '_ \ / _` | '_ \  | |_) / _` |/ __| |/ / _` |/ _` |/ _ \   | |/ _ \ / _ \| / __|  | |
@@ -80,7 +80,7 @@ class Printer(object):
         self.printer("\n")
 
     def print_current_page(self, current_page, total_pages):
-        self.printer("Page: %s/%s" % (current_page, total_pages))
+        self.printer("Page: {}/{}".format(current_page, total_pages))
         self.printer("\n")
 
     def print_dict(self, data):

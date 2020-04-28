@@ -540,7 +540,7 @@ class ConanMultiPackager(object):
         env_vars = env_vars or {}
         build_requires = build_requires or {}
         if reference:
-            reference = ConanFileReference.loads("%s@%s/%s" % (reference,
+            reference = ConanFileReference.loads("{}@{}/{}".format(reference,
                                                                self.username, self.channel))
         reference = reference or self.reference
         self._builds.append(BuildConf(settings, options, env_vars, build_requires, reference))
@@ -585,13 +585,13 @@ class ConanMultiPackager(object):
                 self.auth_manager.login(self.remotes_manager.upload_remote_name)
             if self.conan_pip_package and not self.use_docker:
                 with self.printer.foldable_output("pip_update"):
-                    self.runner('%s %s install -q %s' % (self.sudo_pip_command,
+                    self.runner('{} {} install -q {}'.format(self.sudo_pip_command,
                                                       self.pip_command,
                                                       self.conan_pip_package))
                     if self.pip_install:
                         packages = " ".join(self.pip_install)
                         self.printer.print_message("Install extra python packages: {}".format(packages))
-                        self.runner('%s %s install -q %s' % (self.sudo_pip_command,
+                        self.runner('{} {} install -q {}'.format(self.sudo_pip_command,
                                                           self.pip_command, packages))
 
             self.run_builds(base_profile_name=base_profile_name)
@@ -658,7 +658,7 @@ class ConanMultiPackager(object):
 
         # FIXME: Remove in Conan 1.3, https://github.com/conan-io/conan/issues/2787
         for index, build in enumerate(self.builds_in_current_page):
-            self.printer.print_message("Build: %s/%s" % (index+1, len(self.builds_in_current_page)))
+            self.printer.print_message("Build: {}/{}".format(index+1, len(self.builds_in_current_page)))
             base_profile_name = base_profile_name or os.getenv("CONAN_BASE_PROFILE")
             if base_profile_name:
                 self.printer.print_message("**************************************************")
@@ -746,7 +746,7 @@ class ConanMultiPackager(object):
         else:
             docker_arch_suffix = None
         if docker_arch_suffix and "-" not in docker_image:
-            docker_image = "%s-%s" % (docker_image, docker_arch_suffix)
+            docker_image = "{}-{}".format(docker_image, docker_arch_suffix)
 
         return docker_image
 
@@ -759,7 +759,7 @@ class ConanMultiPackager(object):
         if compiler_name == "gcc" and Version(compiler_version) > Version("5"):
             compiler_version = Version(compiler_version).major(fill=False)
 
-        return "conanio/%s%s" % (compiler_name, compiler_version.replace(".", ""))
+        return "conanio/{}{}".format(compiler_name, compiler_version.replace(".", ""))
 
     def _get_channel(self, specified_channel, stable_channel, upload_when_tag):
         if not specified_channel:

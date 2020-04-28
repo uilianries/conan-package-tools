@@ -29,14 +29,14 @@ include(%s)
 """
 
     def pairs_lines(items):
-        return "\n".join(["%s=%s" % (k, v) for k, v in items])
+        return "\n".join(["{}={}".format(k, v) for k, v in items])
 
     settings = pairs_lines(sorted(build_config.settings.items()))
     options = pairs_lines(build_config.options.items())
     env_vars = pairs_lines(build_config.env_vars.items())
     br_lines = ""
     for pattern, build_requires in build_config.build_requires.items():
-        br_lines += "\n".join(["%s:%s" % (pattern, br) for br in build_requires])
+        br_lines += "\n".join(["{}:{}".format(pattern, br) for br in build_requires])
 
     if os.getenv("CONAN_BUILD_REQUIRES"):
         brs = os.getenv("CONAN_BUILD_REQUIRES").split(",")

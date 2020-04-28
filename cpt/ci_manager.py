@@ -66,7 +66,7 @@ class CIManager(object):
             self.manager = GenericManager(printer)
 
     def get_commit_build_policy(self):
-        pattern = "^.*\[build=(\w*)\].*$"
+        pattern = r"^.*\[build=(\w*)\].*$"
         prog = re.compile(pattern)
         msg = self.get_commit_msg()
         if not msg:
@@ -82,7 +82,7 @@ class CIManager(object):
     def skip_builds(self):
         if os.getenv("CONAN_IGNORE_SKIP_CI"):
             return False
-        pattern = "^.*\[skip ci\].*$"
+        pattern = r"^.*\[skip ci\].*$"
         prog = re.compile(pattern)
         msg = self.get_commit_msg()
         if not msg:
@@ -204,7 +204,7 @@ class BambooManager(GenericManager):
         self.printer.print_message("CI detected: Bamboo")
 
         for var in list(os.environ.keys()):
-            result = re.match('\A[bB][aA][mM][bB][oO][oO]_(CONAN.*)', var)
+            result = re.match(r'\A[bB][aA][mM][bB][oO][oO]_(CONAN.*)', var)
             if result != None and os.getenv(result.group(1), None) == None:
                 self.printer.print_message("de-bambooized CONAN env var : %s " % result.group(1))
                 os.environ[result.group(1)] = os.environ[var]

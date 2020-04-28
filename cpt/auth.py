@@ -104,7 +104,7 @@ class AuthManager(object):
                 return
 
         self._conan_api.authenticate(user, password, remote_name)
-        self.printer.print_message("OK! '%s' user logged in '%s' " % (user, remote_name))
+        self.printer.print_message("OK! '{}' user logged in '{}' ".format(user, remote_name))
 
     def env_vars(self):
         ret = {}

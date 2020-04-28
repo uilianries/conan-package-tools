@@ -288,8 +288,8 @@ def get_visual_builds_for_version(visual_runtimes, visual_version, arch, shared_
         base_set["compiler.toolset"] = toolset
     sets = []
 
-    debug_builds = set(['Debug'])
-    release_builds = set(['Release', 'RelWithDebInfo', 'MinSizeRel'])
+    debug_builds = {'Debug'}
+    release_builds = {'Release', 'RelWithDebInfo', 'MinSizeRel'}
 
     runtime_build_map = {
         'MTd': debug_builds,

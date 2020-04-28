@@ -225,15 +225,15 @@ class DockerCreateRunner(object):
                                                       package_tools_version))
 
         if self._conan_pip_package:
-            commands.append("%s %s install %s --no-cache" % (self._sudo_pip_command,
+            commands.append("{} {} install {} --no-cache".format(self._sudo_pip_command,
                                                              self._docker_pip_command,
                                                               self._conan_pip_package))
         else:
-            commands.append("%s %s install conan --upgrade --no-cache" % (self._sudo_pip_command,
+            commands.append("{} {} install conan --upgrade --no-cache".format(self._sudo_pip_command,
                                                                           self._docker_pip_command))
 
         if self._pip_install:
-            commands.append("%s %s install %s --upgrade --no-cache" % (self._sudo_pip_command,
+            commands.append("{} {} install {} --upgrade --no-cache".format(self._sudo_pip_command,
                                                                        self._docker_pip_command,
                                                                        " ".join(self._pip_install)))
 
@@ -249,7 +249,7 @@ class DockerCreateRunner(object):
 
     def run(self, pull_image=True, docker_entry_script=None):
         envs = self.get_env_vars()
-        env_vars_text = " ".join(['-e %s="%s"' % (key, value)
+        env_vars_text = " ".join(['-e {}="{}"'.format(key, value)
                                  for key, value in envs.items() if value])
 
         # Run the build
@@ -273,7 +273,7 @@ class DockerCreateRunner(object):
                             raise Exception("Error updating the image: %s" % command)
                         # Save the image with the updated installed
                         # packages and remove the intermediate container
-                        command = "%s docker commit conan_runner %s" % (self._sudo_docker_command,
+                        command = "{} docker commit conan_runner {}".format(self._sudo_docker_command,
                                                                         self._docker_image)
                         ret = self._runner(command)
                         if ret != 0:
@@ -317,7 +317,7 @@ class DockerCreateRunner(object):
 
     def pull_image(self):
         with self.printer.foldable_output("docker pull"):
-            ret = self._runner("%s docker pull %s" % (self._sudo_docker_command, self._docker_image))
+            ret = self._runner("{} docker pull {}".format(self._sudo_docker_command, self._docker_image))
             if ret != 0:
                 raise Exception("Error pulling the image: %s" % self._docker_image)
 

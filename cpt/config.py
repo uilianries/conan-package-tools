@@ -1,4 +1,3 @@
-
 class ConfigManager(object):
 
     def __init__(self, conan_api, printer):
