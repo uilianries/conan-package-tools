@@ -4,6 +4,7 @@ jobs:
   conan_latest:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         config:
           - { name: "Conan Stable - Python 2.7", python: 2.7, toxenv: "py27-conan-latest", pyver: "py27" }
