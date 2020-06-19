@@ -40,7 +40,7 @@ jobs:
         config:
           - { name: "Conan Develop - Python 2.7", python: 2.7, toxenv: "py27-conan-dev", pyver: "py27" }
           - { name: "Conan Develop - Python 3.7", python: 3.7, toxenv: "py37-conan-dev", pyver: "py37" }
-    if: ${{ github.ref != 'ref/head/master' }} && !startsWith(github.ref, 'ref/head/release/')
+    if: (${{ github.ref != 'ref/head/master' }} && !startsWith(github.ref, 'ref/head/release/'))
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
