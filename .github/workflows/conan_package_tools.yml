@@ -34,11 +34,6 @@ jobs:
   conan_develop:
     runs-on: ubuntu-latest
     continue-on-error: True
-    on:
-      push:
-        branches-ignore:
-        - 'master'
-        - 'releases/**'
     strategy:
       fail-fast: false
       matrix:
